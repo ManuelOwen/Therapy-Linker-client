@@ -1,53 +1,118 @@
-import React from "react";
-import { FaCheck } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaCheck, FaChevronDown, FaChevronRight } from "react-icons/fa";
 import about from "../imgs/about.jpg";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  { question: "Can anyone get a therapist to help the battle drug addiction?", answer: "Yes, Therapy Linker has the most  qualified therapist to help you fight drug addiction and lead you to sobriety" },
+  { question: "Do I have to physically  vist Therapy Linker to get a therapist?", answer: "No, you can just identify the bet therapist you like and make an appointment with online." },
+  { question: "Is making an appointment online cheaper or expensive?", answer: "With Therapy Linker it is much more cheaper to make an appointment online rather than having to physically  visit the therapist." },
+
+  { question: "Is online therapy as effective as in-person counseling?", answer: "Research suggests that online therapy can be just as effective for many mental health concerns, depending on the individual's needs." },
+  { question: "What types of counseling services are offered?", answer: "Services may include stress management, depression and anxiety therapy, relationship counseling, addiction support, and more." },
+  { question: "Can I access therapy services from any location?", answer: "Availability depends on local regulations and therapist licensing, but most platforms offer nationwide or international services." },
+];
+
+const FAQ: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="bg-gray-100 flex flex-col items-center justify-center py-6 px-5">
+      <h2 className="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
+      <p className="text-gray-500 mt-2 mb-4 text-center">Find answers to the most common questions</p>
+
+      <div className="w-full max-w-3xl">
+        {faqs.map((faq, index) => (
+          <div key={index} className="mb-2">
+            <button
+              onClick={() => toggleFAQ(index)}
+              className="w-full flex justify-between items-center bg-white p-4 shadow-md rounded-md text-left focus:outline-none"
+            >
+              <span className="text-gray-800">{faq.question}</span>
+              {openIndex === index ? <FaChevronDown className="text-gray-500" /> : <FaChevronRight className="text-gray-500" />}
+            </button>
+            {openIndex === index && (
+              <div className="bg-white shadow-md p-4 text-gray-600 rounded-md mt-1">{faq.answer}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const About: React.FC = () => {
   return (
     <>
       <Navbar />
-      <section className="py-12 px-4 sm:px-6 md:px-20 lg:px-32">
-        <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-12">
+      <section className="py-12 px-6 md:px-20 lg:px-32">
+        {/* Section Title */}
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold text-gray-800">About Us</h2>
+          <div className="w-16 h-1 bg-teal-400 mx-auto mt-2"></div>
+          <p className="text-gray-600 mt-3">
+            We provide the best online therapy services to help you navigate life’s challenges.
+          </p>
+        </div>
+
+        {/* Content Section */}
+        <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="relative w-full md:w-1/2">
-            <img src={about} alt="Doctors" className="rounded-lg shadow-lg w-full" />
+            <img src={about} alt="Building" className="rounded-lg shadow-lg w-full" />
             <button className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-blue-500 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-md hover:bg-blue-600 transition duration-300">
-                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <div className="bg-teal-500 w-16 h-16 rounded-full flex items-center justify-center shadow-md hover:bg-teal-600 transition duration-300">
+                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
             </button>
           </div>
+
+          {/* Text Content */}
           <div className="w-full md:w-1/2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">About Us</h2>
-            <p className="text-gray-600 mt-3 text-sm sm:text-base">
-              We provide the best online doctor consultation services to help you navigate life’s challenges.
+            <h3 className="text-2xl font-semibold text-gray-800">
+              Providing Quality Therapy Services at Your Convenience
+            </h3>
+            <p className="text-gray-600 italic mt-3">
+              Our goal is to connect you with the best professionals, ensuring personalized care and support.
             </p>
-            <ul className="mt-4 space-y-3 text-gray-700">
-              {["Professional and experienced doctors.", "Confidential and secure online sessions.", "Flexible scheduling.", "Affordable pricing."].map((item, index) => (
+
+            {/* Bullet Points */}
+            <ul className="mt-4 space-y-2 text-gray-700">
+              {[
+                "Professional and experienced therapists.",
+                "Confidential and secure online sessions.",
+                "Flexible scheduling to fit your lifestyle.",
+                "Affordable pricing and various plans available.",
+              ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <FaCheck className="text-blue-500 mt-1" />
-                  <span className="text-sm sm:text-base">{item}</span>
+                  <FaCheck className="text-teal-400 mt-1" />
+                  {item}
                 </li>
               ))}
             </ul>
+
+            {/* Extra Paragraph */}
+            <p className="mt-3 text-gray-700">
+              We prioritize your mental well-being and provide tools to help you achieve a balanced and healthy life.
+            </p>
           </div>
         </div>
       </section>
-      <section className="bg-blue-50 py-8 sm:py-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-          {[{ label: "Doctors", value: 15 }, { label: "Departments", value: 18 }, { label: "Research Labs", value: 12 }, { label: "Awards", value: 150 }].map((stat, index) => (
-            <div key={index} className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="bg-blue-500 text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full mx-auto mb-2 sm:mb-3">
-                <span className="text-lg sm:text-xl font-bold">{stat.value}</span>
-              </div>
-              <p className="text-gray-700 font-semibold text-sm sm:text-base">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+
+      {/* FAQ Section */}
+      <FAQ />
+
       <Footer />
     </>
   );

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Company Info */}
         <div>
-          <h2 className="text-lg font-semibold text-gray-800">Medilab</h2>
+          <h2 className="text-lg font-semibold text-gray-800">Therapy Linker</h2>
           <p className="mt-2">A108 Adam Street</p>
           <p>New York, NY 535022</p>
           <p className="mt-2 font-semibold">
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold text-gray-800">Useful Links</h3>
           <ul className="mt-2 space-y-1">
-            {["Home", "About us", "Services", "Terms of service", "Privacy policy"].map((item) => (
+            {["Home", "About us", "Departments", "Doctors", "Contacts"].map((item) => (
               <li key={item}>
                 <a href="#" className="hover:text-teal-400 transition">
                   {item}
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold text-gray-800">Our Services</h3>
           <ul className="mt-2 space-y-1">
-            {["Web Design", "Web Development", "Product Management", "Marketing", "Graphic Design"].map((item) => (
+            {["Gidance & Counselling", "Drug Treatment", "", "Social Anxiety", "Social Life"].map((item) => (
               <li key={item}>
                 <a href="#" className="hover:text-teal-400 transition">
                   {item}
@@ -79,9 +79,9 @@ const Footer: React.FC = () => {
 
       {/* Copyright Section */}
       <div className="text-center text-gray-600 mt-10 border-t border-gray-300 pt-5">
-        <p>© Copyright <strong className="text-gray-800">Medilab</strong>. All Rights Reserved</p>
+        <p>© Copyright <strong className="text-gray-800">Therapy Linker</strong>. All Rights Reserved</p>
         <p>
-          Designed by <a href="#" className="text-blue-600 hover:underline">Kimathi Brian</a>
+          Designed by <a href="#" className="text-blue-600 hover:underline">Owen Kibet</a>
         </p>
       </div>
     </footer>
